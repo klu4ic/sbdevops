@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'mvn -B -f /spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml -DskipTests clean package' 
+                sh 'mvn -B -f /home/sbdevops/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml -DskipTests clean package' 
             }
         }
     }
