@@ -16,7 +16,15 @@ pipeline {
         stage("Upload") {
            steps {
                
-        nexusPublisher nexusInstanceId: 'Nexus', nexusRepositoryId: 'maven-snapshots', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'hellospringweb', groupId: 'com.madhu', packaging: 'war', version: '${BUILD_NUMBER}']]]
+       
+ nexusInstanceId: 'Nexus', 
+ nexusRepositoryId: 'maven-snapshots', 
+ packages: [[$class: 'MavenPackage', 
+ mavenAssetList: [], 
+ mavenCoordinate: [artifactId: 'hellospringweb', 
+ groupId: 'com.madhu', 
+ packaging: 'war', 
+ version: '${BUILD_NUMBER}']]]
            }
         }
     }
