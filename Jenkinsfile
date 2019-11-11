@@ -17,7 +17,7 @@ pipeline {
            steps {
                
        
- nexusInstanceId: 'Nexus', 
+ nexusPublisher nexusInstanceId: 'Nexus', 
  nexusRepositoryId: 'maven-snapshots', 
  packages: [[$class: 'MavenPackage', 
  mavenAssetList: [], 
