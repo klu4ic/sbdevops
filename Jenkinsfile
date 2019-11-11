@@ -14,7 +14,7 @@ pipeline {
              }
        
     stage('Publish') {
-        sh ping 8.8.8.8
+        echo 'Hello'
        }
   
    
