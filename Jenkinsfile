@@ -14,7 +14,10 @@ pipeline {
              }
        
     stage('Publish') {
+        steps {
         echo 'Hello'
+            
+            }
        }
   
    
