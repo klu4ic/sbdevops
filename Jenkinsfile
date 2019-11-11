@@ -16,7 +16,7 @@ pipeline {
         stage("Upload") {
            steps {
                
-               nexusArtifactUploader artifacts: [[artifactId: 'web-ui', classifier: '', file: 'spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus-credentials', groupId: 'xz', nexusUrl: '192.168.33.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '${BUILD_VERSION}'
+               nexusArtifactUploader artifacts: [[artifactId: 'web-ui', classifier: '', file: 'spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar', type: 'jar']], credentialsId: 'nexus-credentials', groupId: 'xz', nexusUrl: '192.168.33.10:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots/', version: '${BUILD_VERSION}'
                
            }
         }
