@@ -11,12 +11,13 @@ pipeline {
             steps {
           
                 sh 'mvn -B -Djar.finalName=myCustomName -f /var/jenkins_home/workspace/java/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml clean install' 
-            }
+            
         }
         
            stage('Publish') {
   nexusPublisher nexusInstanceId: 'Nexus', nexusRepositoryId: 'maven-snapshots', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'hellospringweb', groupId: 'com.madhu', packaging: 'war', version: '${BUILD_NUMBER}']]]
-      
+          
+               }
         }
     }
 }
