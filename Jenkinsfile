@@ -16,7 +16,7 @@ pipeline {
         stage("Upload") {
            steps {
                
-                   nexusArtifactUploader artifacts: [[artifactId: 'web-ui', 
+                   nexusArtifactUploader artifacts: [[artifactId: 'spring-boot-smoke-test-web-ui-2.2.1.', 
                    classifier: '', 
                    file: 'spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar', 
                    type: 'jar']], 
