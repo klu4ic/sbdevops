@@ -4,19 +4,6 @@ pipeline {
             image 'maven:3-alpine' 
             args '-v /root/.m2:/root/.m2' 
         }
-
-        environment {
-          // This can be nexus3 or nexus2
-          NEXUS_VERSION = "nexus3"
-          // This can be http or https
-          NEXUS_PROTOCOL = "http"
-          // Where your Nexus is running
-          NEXUS_URL = "172.17.0.3:8081"
-          // Repository where we will upload the artifact
-          NEXUS_REPOSITORY = "repository-example"
-          // Jenkins credential id to authenticate to Nexus OSS
-          NEXUS_CREDENTIAL_ID = "nexus-credentials"
-        }
       
     }
     stages {
