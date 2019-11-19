@@ -2,7 +2,7 @@ properties([
 pipelineTriggers([])
 ])
 
-node {
+node() {
     stage("average") {
         sh "uptime"
         deleteDir()
@@ -20,7 +20,7 @@ node {
 }    
 
     input("Please approve deploy to.")
-
+node(){
     
     
     stage ("Save Artifact") {
