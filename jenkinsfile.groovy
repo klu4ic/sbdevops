@@ -1,5 +1,3 @@
-properties([pipelineTriggers([cron('*/5 * * * *')])])
-
 node() {
     stage("average") {
         sh "uptime"
