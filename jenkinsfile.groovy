@@ -37,7 +37,7 @@ properties([
 node {
     stage("average") {
         sh "uptime"
-		 
+		currentBuild.displayName = "#${BUILD_NUMBER} text1 ${params.BRANCH}" 
 		ansiColor('xterm') {
             printlnGreen "ttexttt"
         }
