@@ -1,3 +1,7 @@
+properties([
+pipelineTriggers([])
+])
+
 node() {
     stage("average") {
         sh "uptime"
