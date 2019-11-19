@@ -2,7 +2,7 @@ properties([
 pipelineTriggers([])
 ])
 
-node() {
+node {
     stage("average") {
         sh "uptime"
         deleteDir()
@@ -17,10 +17,10 @@ node() {
         def workDir = sh(returnStdout: true, script: "pwd").trim()
         sh "cd $workDir && cd spring-boot && ls -lh"
     }
-}    
+    
 
     input("Please approve deploy to.")
-node(){
+
     
     
     stage ("Save Artifact") {
