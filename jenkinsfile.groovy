@@ -25,8 +25,8 @@ node {
     }
     
     stage("gitclone") { 
-            sh "git clone https://github.com/klu4ic/spring-boot.git"
-            
+   //    sh "git clone https://github.com/klu4ic/spring-boot.git"
+     	 checkout scm       
     }
 
     stage ("Dir") {
