@@ -21,12 +21,15 @@ properties([
 node {
     stage("average") {
         sh "uptime"
+		  ansiColor('xterm') {
+            printlnGreen "ttexttt"
+        }
         deleteDir()
     }
     
     stage("gitclone") { 
-   //    sh "git clone https://github.com/klu4ic/spring-boot.git"
-     	 checkout scm       
+       sh "git clone https://github.com/klu4ic/spring-boot.git"
+     //	 checkout scm       
     }
 
     stage ("Dir") {
@@ -39,5 +42,7 @@ node {
     stage ("Save Artifact") {
     archiveArtifacts artifacts: "spring-boot/LICENSE.txt", fingerprint: true
     }
-
+def printlnGreen(text) {
+    println "\033[1;4;37;42m$text\033[0m"
+}
 }
