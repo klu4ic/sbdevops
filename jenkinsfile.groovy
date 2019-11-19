@@ -21,7 +21,8 @@ properties([
 node {
     stage("average") {
         sh "uptime"
-		  ansiColor('xterm') {
+		currentBuild.displayName = "#${BUILD_NUMBER} text1  
+		ansiColor('xterm') {
             printlnGreen "ttexttt"
         }
         deleteDir()
