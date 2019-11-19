@@ -18,9 +18,6 @@ node {
         sh "cd $workDir && cd spring-boot && ls -lh"
     }
     
-
-    input("Please approve deploy to.")
-
     
     
     stage ("Save Artifact") {
