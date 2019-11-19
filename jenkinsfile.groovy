@@ -48,7 +48,7 @@ node {
     
     stage("gitclone") { 
 		
-	   currentBuild.displayName = "#${BUILD_NUMBER} text1 ${BRANCH}"
+
        sh "git clone https://github.com/klu4ic/spring-boot.git"
      //	 checkout scm       
     }
