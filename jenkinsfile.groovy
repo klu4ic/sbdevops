@@ -1,6 +1,4 @@
 properties([
-	
-	properties([
     buildDiscarder(
         logRotator(
             artifactDaysToKeepStr: '14',
@@ -16,7 +14,6 @@ properties([
             description: 'Choise master, stable, release'
         )
     ]),
-		
     pipelineTriggers([
         GenericTrigger(
             causeString: 'Push to master', 
@@ -35,6 +32,7 @@ properties([
         )
     ])
 ])
+
 
 node {
     stage("average") {
