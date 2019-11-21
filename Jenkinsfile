@@ -1,33 +1,54 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-        }
-      
-    }
+    agent any
     stages {
-        stage('Build') { 
+        
+        stage('Remove Dir') {
+            
             steps {
-                sh 'mvn -B -Djar.finalName=myCustomName -f /var/jenkins_home/workspace/java/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml clean install' 
+            deleteDir()
+            
             }
         }
         
-        stage("Upload") {
+        stage('Git Checkout') {
+          steps {
+                sh 'git clone https://github.com/klu4ic/spring-boot.git'
+          }
+        }
+        
+        stage('Build') {
+            agent {
+                docker { 
+                      image 'maven:3-alpine' 
+                      args '-v /root/.m2:/root/.m2'
+                }
+            }
+            steps {
+                sh 'mvn -f /var/jenkins_home/workspace/Maven_1/spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml clean install'
+            }
+        }
+        
+         stage("Upload") {
            steps {
                
-                   nexusArtifactUploader artifacts: [[artifactId: 'spring-boot-smoke-test-web-ui-2.2.1', 
-                   classifier: '', 
-                   file: 'spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar', 
-                   type: 'jar']], 
-                   credentialsId: 'nexus-credentials', 
-                   groupId: 'xz', 
-                   nexusUrl: '192.168.33.10:8081', 
-                   nexusVersion: 'nexus3', protocol: 'http', 
-                   repository: 'maven-releases', 
-                   version: 'build-${BUILD_NUMBER}'
+                 nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: 'spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar']], mavenCoordinate: [artifactId: 'spring-boot-smoke-test-web-ui-2.2.1', groupId: 'spring-boot-artifact', packaging: 'jar', version: 'build-${BUILD_NUMBER}']]]
+              
                
            }
         }
+        
+        
+        stage('Deploy') {
+            agent {
+                docker { 
+                      image 'woahbase/alpine-ansible:x86_64' 
+                      args '-v /home/centos/ansible-data/:/var/opt -v /home/centos/ansible_cache/:/home/alpine/'
+                      
+                }
+            }
+            steps {
+                sh 'cd /var/opt && ansible-playbook deploy_ci.yml '
+            }
+        }    
     }
 }
