@@ -39,16 +39,15 @@ pipeline {
         
         
         stage('Deploy') {
-            agent {
-                docker { 
-                      image 'woahbase/alpine-ansible:x86_64' 
-                      args '-v /home/centos/ansible-data/:/var/opt -v /home/centos/ansible_cache/:/home/alpine/'
-                      
+           
+            stage ("DEPLOY"){
+            steps{
+                script {
+                    build job: '/CI Deploy'
                 }
             }
-            steps {
-                sh 'cd /var/opt && ansible-playbook deploy_ci.yml --extra-vars "jserverport=$paramport"'
-            }
+        }
+            
         }    
     }
 }
