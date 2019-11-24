@@ -37,7 +37,13 @@ pipeline {
            }
         }
         
-        
+      stage ("Deploy"){
+            steps{
+                script {
+                    build job: '/CI DEPLOY'
+                }
+            }
+        }  
   
             
     }
