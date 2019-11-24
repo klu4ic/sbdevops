@@ -11,7 +11,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'cd /var/opt && ansible-playbook deploy_ci.yml --extra-vars "jserverport=8080" </dev/null >/dev/null 2>&1 &'
+                sh 'cd /var/opt && ansible-playbook deploy_ci.yml --extra-vars "jserverport=8080"'
             }
          
         }
