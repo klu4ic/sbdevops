@@ -38,9 +38,7 @@ pipeline {
         }
         
         
-        stage('Deploy') {
-           
-            stage ("DEPLOY"){
+      stage ("Deploy"){
             steps{
                 script {
                     build job: '/CI Deploy'
@@ -48,6 +46,6 @@ pipeline {
             }
         }
             
-        }    
+            
     }
 }
