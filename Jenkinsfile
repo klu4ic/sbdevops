@@ -28,13 +28,30 @@ pipeline {
             }
         }
         
-         stage("Upload") {
+         stage("Upload jar") {
            steps {
                
                  nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: 'spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar']], mavenCoordinate: [artifactId: 'spring-boot-smoke-test-web-ui-2.2.1', groupId: 'spring-boot-artifact', packaging: 'jar', version: 'build-${BUILD_NUMBER}']]]
-              
+                 
                
            }
+        }
+        
+        stage("Build & Upload Docker Container") {
+            
+             agent {
+                docker { 
+                      image 'woahbase/alpine-ansible:x86_64' 
+                      args '-v /home/centos/ansible-data/:/var/opt -v /home/centos/ansible_cache/:/home/alpine/'
+                    
+                }
+            }
+            
+            steps {
+        
+            sh 'cd /var/opt && ansible-playbook docker-maven.yml --extra-vars "tagvar=${BUILD_NUMBER}"'
+           
+            }
         }
         
       stage ("Deploy"){
