@@ -49,7 +49,7 @@ pipeline {
             
             steps {
         
-            sh 'cd /var/opt && ansible-playbook docker-maven.yml --extra-vars "tagvar=${BUILD_NUMBER}"'
+            sh 'cd /var/opt && ansible-playbook docker-maven.yml --extra-vars "tagvar=build-${BUILD_NUMBER}"'
            
             }
         }
