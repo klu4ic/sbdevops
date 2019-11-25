@@ -12,6 +12,7 @@ pipeline {
             }
             steps {
                 sh 'cd /var/opt && ansible-playbook deploy_ci.yml --extra-vars "jserverport=$paramport"'
+                sh 'cd /var/opt && ansible-playbook docker-maven.yml "'
             }
          
         }
