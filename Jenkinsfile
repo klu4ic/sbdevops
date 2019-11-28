@@ -48,8 +48,8 @@ pipeline {
             }
             
             steps {
-              sh ' cd /home/alpine && touch 997.txt'    
-//            sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build" --limit aws_devtools --extra-vars "tagvar=build-${BUILD_NUMBER}"'
+            
+             sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build" --limit aws_devtools --extra-vars "tagvar=build-${BUILD_NUMBER}"'
            
             }
         }
