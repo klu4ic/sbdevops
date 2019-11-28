@@ -11,8 +11,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'cd /var/opt && ansible-playbook deploy_ci.yml --extra-vars "jserverport=$paramport"'
-                sh 'cd /var/opt && ansible-playbook docker-deploy.yml'
+                sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "jar-deploy" --limit aws_CI --extra-vars "jserverport=$paramport"'
+                sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-push" --limit aws_CI'
             }
          
         }
