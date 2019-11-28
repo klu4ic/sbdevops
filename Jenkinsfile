@@ -42,7 +42,7 @@ pipeline {
              agent {
                 docker { 
                       image 'woahbase/alpine-ansible:x86_64' 
-                      args '-v /opt/docker/volumes/ansible/ansible-data:/var/opt -v /opt/docker/volumes/ansible/ansible_cache/:/home/alpine/'
+                      args '-v /opt/docker/volumes/ansible/ansible-data:/var/opt -v /opt/docker/volumes/ansible/ansible-cache:/home/alpine'
                     
                 }
             }
