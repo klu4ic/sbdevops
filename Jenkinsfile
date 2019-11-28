@@ -37,22 +37,22 @@ pipeline {
            }
         }
         
-//        stage("Build & Upload Docker Container") {
+        stage("Build & Upload Docker Container") {
             
-//             agent {
-//                docker { 
-//                      image 'woahbase/alpine-ansible:x86_64' 
-//                      args '-v /home/centos/ansible-data/:/var/opt -v /home/centos/ansible_cache/:/home/alpine/'
+             agent {
+                docker { 
+                      image 'woahbase/alpine-ansible:x86_64' 
+                      args '-v /home/centos/ansible-data/:/var/opt -v /home/centos/ansible_cache/:/home/alpine/'
                     
-//                }
-//            }
+                }
+            }
             
-//            steps {
+            steps {
         
-//            sh 'cd /var/opt && ansible-playbook docker-maven.yml --extra-vars "tagvar=build-${BUILD_NUMBER}"'
+            sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build" --limit aws_devtools --extra-vars "tagvar=build-${BUILD_NUMBER}"'
            
-//            }
-//        }
+            }
+        }
         
       stage ("Deploy"){
             steps{
