@@ -31,7 +31,16 @@ pipeline {
          stage("Upload jar") {
            steps {
                
-                 nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-repository', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: 'spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar']], mavenCoordinate: [artifactId: 'spring-boot-smoke-test-web-ui-2.2.1', groupId: 'spring-boot-artifact', packaging: 'jar', version: 'build-${BUILD_NUMBER}']]]
+                 nexusPublisher nexusInstanceId: 'nexus', 
+                     nexusRepositoryId: 'maven-repository', 
+                     packages: [[$class: 'MavenPackage', 
+                     mavenAssetList: [[classifier: '', 
+                     extension: 'jar', 
+                     filePath: 'spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar']], 
+                     mavenCoordinate: [artifactId: 'spring-boot-smoke-test-web-ui-2.2.1', 
+                     groupId: 'spring-boot-artifact', 
+                     packaging: 'jar', 
+                     version: 'build-${BUILD_NUMBER}']]]
                  
                
            }
