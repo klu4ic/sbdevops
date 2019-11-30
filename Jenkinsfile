@@ -68,7 +68,7 @@ pipeline {
             steps{
                 script {
 //                    build job: '/CI DEPLOY'
-                    ${SelectDeploy}
+                    ${select_deploy_job}
                 }
             }
         }  
