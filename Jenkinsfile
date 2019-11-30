@@ -60,7 +60,7 @@ pipeline {
             
             steps {
             
-             sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build" --limit aws_devtools --extra-vars "tagvar=build-${BUILD_NUMBER}"'
+             sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build " --limit aws_devtools --extra-vars "tagvar=build-${BUILD_NUMBER} dckr_port=docker_port"'
            
             }
         }
