@@ -25,7 +25,9 @@ pipeline {
             }
             steps {
                 sh 'mvn -f /var/jenkins_home/workspace/Maven_1/spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml clean install'
+                sh 'curl ${env.Select_artifact_version_ARTIFACT_URL}'           
             }
+            
         }
         
          stage("Upload jar") {
