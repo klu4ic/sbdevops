@@ -79,9 +79,9 @@ pipeline {
      //           script {
        //             build job: '/CI DEPLOY'
                   
-                }
-            }
-        }  
+         //       }
+           // }
+       // }  
   
             
     }
