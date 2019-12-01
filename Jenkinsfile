@@ -33,7 +33,7 @@ pipeline {
          stage("Upload jar") {
            steps {
                
-                 nexusPublisher nexusInstanceId: 'nexus', 
+                 nexusPublisher nexusInstanceId: 'nexus-server', 
                      nexusRepositoryId: 'maven-repository', 
                      packages: [[$class: 'MavenPackage', 
                      mavenAssetList: [[classifier: '', 
