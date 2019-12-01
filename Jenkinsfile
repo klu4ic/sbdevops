@@ -32,6 +32,7 @@ pipeline {
         
          stage("Upload jar") {
            steps {
+                sh 'sh && pwd'
                
                  nexusPublisher nexusInstanceId: 'nexus-server', 
                      nexusRepositoryId: 'maven-repository', 
