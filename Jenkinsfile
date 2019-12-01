@@ -24,7 +24,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn -f .spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml clean install'
+                sh 'mvn -f spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml clean install'
                         
             }
             
