@@ -1,4 +1,4 @@
-pipeline {
+peline {
     agent any
     stages {
         
@@ -24,20 +24,30 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn -f /var/jenkins_home/workspace/Maven_1/spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml clean install'
-            }
+                sh 'mvn clean install -f /var/jenkins_home/workspace/BuildApplication/spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml'
+                        
+            }       
         }
         
          stage("Upload jar") {
            steps {
                
-                 nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-repository', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: 'spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar']], mavenCoordinate: [artifactId: 'spring-boot-smoke-test-web-ui-2.2.1', groupId: 'spring-boot-artifact', packaging: 'jar', version: 'build-${BUILD_NUMBER}']]]
+                 nexusPublisher nexusInstanceId: 'nexus-server', 
+                     nexusRepositoryId: 'maven-repository', 
+                     packages: [[$class: 'MavenPackage', 
+                     mavenAssetList: [[classifier: '', 
+                     extension: 'jar', 
+                     filePath: 'spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar']], 
+                     mavenCoordinate: [artifactId: 'spring-boot-smoke-test-web-ui-2.2.1', 
+                     groupId: 'spring-boot-artifact', 
+                     packaging: 'jar', 
+                     version: 'build-${BUILD_NUMBER}']]]
                  
                
            }
         }
         
-        stage("Build & Upload Docker Container") {
+        stage("Build & Upload Docker Image to DTR") {
             
              agent {
                 docker { 
@@ -49,15 +59,26 @@ pipeline {
             
             steps {
             
-             sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build" --limit aws_devtools --extra-vars "tagvar=build-${BUILD_NUMBER}"'
+             sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build " --limit aws_devtools --extra-vars "tagvar=build-${BUILD_NUMBER}"'
            
             }
         }
         
+             stage ("Clean WorkSpace"){
+                steps{
+                    cleanWs()
+                  
+                }
+             }   
+        
+        
+       
       stage ("Deploy"){
             steps{
                 script {
-                    build job: '/CI DEPLOY'
+                    build job: '/CI Deploy'
+                    build job: '/QI Deploy'
+                  
                 }
             }
         }  
