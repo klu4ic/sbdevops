@@ -12,6 +12,7 @@ pipeline {
         
         stage('Git Checkout') {
           steps {
+              sh 'echo ${JOB_NAME}'
                 sh 'git clone https://github.com/klu4ic/spring-boot.git'
           }
         }
