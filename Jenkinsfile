@@ -24,8 +24,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn clean install -f /var/jenkins_home/workspace/BuildApplication/spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml'
-                        
+                sh 'mvn clean install -f /var/jenkins_home/workspace/BuildApplication/spring-boot/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml'               
             }       
         }
         
