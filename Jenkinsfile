@@ -65,12 +65,19 @@ pipeline {
             }
         }
         
+             stage ("Clean WorkSpace"){
+                steps{
+                    cleanws()
+                  
+                }
+             }   
         
-      stage ("Deploy"){
-            steps{
-                script {
-                    build job: '/CI DEPLOY'
-//                    ${env.select_deploy_job}
+        
+       
+ //     stage ("Deploy"){
+   //         steps{
+     //           script {
+       //             build job: '/CI DEPLOY'
                   
                 }
             }
