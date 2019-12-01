@@ -65,6 +65,14 @@ pipeline {
             }
         }
         
+     stage ("Clean WorkSpace"){
+           
+          steps{
+          
+              cleanws()
+          }
+     }       
+        
         
       stage ("Deploy"){
             steps{
