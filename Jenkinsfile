@@ -48,7 +48,7 @@ pipeline {
            }
         }
         
-        stage("Build & Upload Docker Container") {
+        stage("Build & Upload Docker Image to DTR") {
             
              agent {
                 docker { 
