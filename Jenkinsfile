@@ -48,22 +48,6 @@ pipeline {
            }
         }
         
-        stage("Build & Upload Docker Image to DTR") {
-            
-             agent {
-                docker { 
-                      image 'woahbase/alpine-ansible:x86_64' 
-                      args '-v /opt/docker/volumes/ansible/ansible-data:/var/opt -v /opt/docker/volumes/ansible/ansible-cache:/home/alpine'
-                    
-                }
-            }
-            
-            steps {
-            
-             sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build " --limit aws_devtools --extra-vars "tagvar=build-${BUILD_NUMBER}"'
-           
-            }
-        }
         
              stage ("Clean WorkSpace"){
                 steps{
