@@ -48,7 +48,7 @@ pipeline {
            }
         }
         
-        stage('Deploy') {
+        stage('Build Docker Image and Push it to ECR') {
             agent {
                 docker { 
                       image 'woahbase/alpine-ansible:x86_64' 
