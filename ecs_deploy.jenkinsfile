@@ -13,7 +13,7 @@ pipeline {
             }
             steps {
             
-            sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "ecs-deploy" --limit ${JOB_NAME} --extra-vars "build_image_number=$Select_Docker_image_to_Deploy"'
+            sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "ecs-deploy" --limit "aws_devtools" --extra-vars "build_image_number=$Select_Docker_image_to_Deploy"'
             
             }
          
