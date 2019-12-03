@@ -14,7 +14,7 @@ pipeline {
             steps {
 
                 sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "jar-deploy" --limit ${JOB_NAME} --extra-vars "jserverport=$paramport choise_artifact=$Select_artifact_version_ARTIFACT_URL"'
-                sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-deploy" --limit ${JOB_NAME}'
+                sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-deploy" --limit ${JOB_NAME} --extra-vars "build_image_number=$Select_Docker_image_to_Deploy'
             }
          
         }
