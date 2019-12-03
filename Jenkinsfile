@@ -61,8 +61,8 @@ pipeline {
       stage ("Deploy"){
             steps{
                 script {
-             //       build job: '/CI-Deploy'
-                    build job: '/QI-Deploy'
+                    build job: '/CI-Deploy'
+                //    build job: '/QI-Deploy'
                   
                 }
             }
