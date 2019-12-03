@@ -78,7 +78,7 @@ pipeline {
             steps{
                 script {
                     build job: '/CI-Deploy'
-                //    build job: '/QI-Deploy'
+                    build job: '/QI-Deploy'
                   
                 }
             }
