@@ -48,21 +48,21 @@ pipeline {
            }
         }
         
-        stage('Build Docker Image and Push it to ECR') {
-            agent {
+ stage("Build & Upload Docker Image to ECR") {
+            
+             agent {
                 docker { 
                       image 'woahbase/alpine-ansible:x86_64' 
-                      args '-v /opt/docker/volumes/ansible/ansible-data/:/var/opt -v /opt/docker/volumes/ansible/ansible-cache/:/home/alpine/'
-                     
-                      
+                      args '-v /opt/docker/volumes/ansible/ansible-data:/var/opt -v /opt/docker/volumes/ansible/ansible-cache:/home/alpine'
+                    
                 }
             }
+            
             steps {
-                 sh 'env'
-                sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "jar-deploy" --limit ${JOB_NAME} --extra-vars "jserverport=$paramport choise_artifact=$Select_artifact_version_ARTIFACT_URL"'
-                sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-deploy" --limit ${JOB_NAME}'
+            
+             sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build " --limit aws_devtools --extra-vars "buildtag=build-${BUILD_NUMBER}"'
+           
             }
-         
         }
         
              stage ("Clean WorkSpace"){
