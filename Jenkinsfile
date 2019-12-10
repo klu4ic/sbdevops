@@ -60,7 +60,7 @@ pipeline {
             
             steps {
             
-             sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build " --limit aws_devtools --extra-vars "buildtag=build-${BUILD_NUMBER}"'
+             sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build " --limit aws_devtools --extra-vars "buildtag=build-${BUILD_NUMBER}" --vault-password-file vault-pass.txt'
            
             }
         }
