@@ -79,7 +79,7 @@ pipeline {
                 script {
                     build job: '/CI-Deploy'
                     build job: '/QA-Deploy'
-                    build job: '/x-Docker-Deploy'
+//                   build job: '/x-Docker-Deploy'
                   
                 }
             }
