@@ -51,11 +51,15 @@ pipeline {
 
         
     stage("Build image") {
+        steps {
         sh "docker build -t 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest -f /opt/docker/Dockerfile ."
+        }
     }
     stage("Push image") {
+        steps {
         docker.withRegistry('https://556838424422.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ansible') {
             sh "docker push 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest"
+        }
         }
     }
         
