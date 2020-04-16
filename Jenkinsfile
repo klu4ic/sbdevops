@@ -48,22 +48,16 @@ pipeline {
            }
         }
         
- stage("Build & Upload Docker Image to ECR") {
-            
-             agent {
-                docker { 
-                      image 'woahbase/alpine-ansible:x86_64' 
-                      args '-v /opt/docker/volumes/ansible/ansible-data:/var/opt -v /opt/docker/volumes/ansible/ansible-cache:/home/alpine'
-                    
-                }
-            }
-            
-            steps {
-            
-             sh 'cd /var/opt && ansible-playbook deploy_role.yml --tags "docker-build " --limit aws_devtools --extra-vars "buildtag=build-${BUILD_NUMBER}" --vault-password-file vault-pass.txt'
-           
-            }
+
+        
+    stage('Build image') {
+        sh "docker build -t 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest -f /opt/docker/Dockerfile ."
+    }
+    stage('Push image') {
+        docker.withRegistry('https://556838424422.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ansible') {
+            sh "docker push 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest"
         }
+    }
         
              stage ("Clean WorkSpace"){
                 steps{
