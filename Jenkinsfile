@@ -59,7 +59,7 @@ pipeline {
       pwd
       whoami
       cat /opt/docker/Dockerfile
-      docker build -t 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest -f /opt/docker/ .
+      docker build -t 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest -f /var/jenkins_home/docker .
       docker push 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest
     '''
  }
