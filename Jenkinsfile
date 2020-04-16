@@ -56,8 +56,8 @@ pipeline {
              
   docker.withRegistry('https://556838424422.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:ansible') {
     sh '''
-      docker build -t 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:${BUILD_NUMBER} -f /var/jenkins_home/docker/Dockerfile .
-      docker push 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest
+      docker build -t 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:${BUILD_NUMBER} -t 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest -f /var/jenkins_home/docker/Dockerfile .
+      docker push 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:{BUILD_NUMBER}t && docker push 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest
     '''
  }
   }
