@@ -52,7 +52,7 @@ pipeline {
         
     stage("Build image") {
         steps {
- withDockerRegistry([credentialsId: 'AKIAYDJRIB5TD4EDEGAT', url: "https://556838424422.dkr.ecr.us-east-1.amazonaws.com"]) {
+ withDockerRegistry([credentialsId: 'ansible', url: "https://556838424422.dkr.ecr.us-east-1.amazonaws.com"]) {
     sh '''
       docker build -t 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest -f /opt/docker/Dockerfile .
       docker push 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest
