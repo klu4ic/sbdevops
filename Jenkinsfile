@@ -10,6 +10,17 @@ pipeline {
             }
         }
         
+     stage('hello AWS') {
+       steps {
+           script {
+                withAWS(credentials: 'ansible', region: 'us-east-1') {
+                    sh 'echo "Hello World"'
+                }
+               }
+            }
+        }   
+        
+        
         stage('Git Checkout') {
           steps {
               sh 'echo ${JOB_NAME}'
@@ -64,18 +75,7 @@ pipeline {
       }      
     }
         
-     stage('hello AWS') {
-       steps {
-           script {
-                withAWS(credentials: 'ansible', region: 'us-east-1') {
-                    sh 'echo "hello KB">hello.txt'
-                    s3Upload acl: 'Private', bucket: 'kb-bucket', file: 'hello.txt'
-                    s3Download bucket: 'kb-bucket', file: 'downloadedHello.txt', path: 'hello.txt'
-                    sh 'cat downloadedHello.txt'
-                }
-               }
-            }
-        }   
+
   
         
              stage ("Clean WorkSpace"){
