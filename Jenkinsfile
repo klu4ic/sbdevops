@@ -12,10 +12,10 @@ pipeline {
         
      stage('hello AWS') {
        steps {
-           script {
+
                 withAWS(credentials: 'ansible', region: 'us-east-1') {
                     sh 'echo "Hello World"'
-                }
+               
                }
             }
         }   
