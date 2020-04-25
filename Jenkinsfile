@@ -75,7 +75,13 @@ pipeline {
       }      
     }
         
-
+stage('Deploy App') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "/var/jenkins_home/web-ui-app.yaml", kubeconfigId: "kubecfg")
+        }
+      }
+    }
   
         
              stage ("Clean WorkSpace"){
