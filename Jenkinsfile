@@ -78,7 +78,7 @@ pipeline {
 stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "web-ui-app.yaml", kubeconfigId: "kubecfg")
+          kubernetesDeploy(configs: "spring-boot/web-ui-app.yaml", kubeconfigId: "kubecfg")
         }
       }
     }
