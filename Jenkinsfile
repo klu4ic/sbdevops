@@ -78,7 +78,7 @@ pipeline {
 stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "/var/jenkins_home/web-ui-app.yaml", kubeconfigId: "kubecfg")
+          kubernetesDeploy(configs: "web-ui-app.yaml", kubeconfigId: "kubecfg")
         }
       }
     }
