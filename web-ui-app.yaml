@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web-ui-app
+  name: web-ui-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-ui-app
+  template:
+    metadata:
+      labels:
+        app: web-ui-app
+    spec:
+      containers:
+      - image: 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:107
+        imagePullPolicy: Always
+        name: web-ui-app
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: web-ui-app
+  name: web-ui-app
+spec:
+  ports:
+  - nodePort: 32223
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: web-ui-app
+  type: NodePort
