@@ -29,10 +29,11 @@ metadata:
   name: web-ui-app
 spec:
   ports:
-  - nodePort: 32223
+#  - nodePort: 32223
     port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
     app: web-ui-app
-  type: NodePort
+#  type: NodePort
+  type: LoadBalancer
