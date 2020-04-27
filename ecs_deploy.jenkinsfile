@@ -1,7 +1,15 @@
 pipeline {
     agent any
     stages {
-    
+      
+      stage('Remove Dir') {
+            
+            steps {
+            deleteDir()
+            
+            }
+        }
+        
      stage('Git Checkout') {
           steps {
                 sh 'git clone https://github.com/klu4ic/spring-boot.git'
