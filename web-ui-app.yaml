@@ -16,7 +16,8 @@ spec:
         app: web-ui-app
     spec:
       containers:
-      - image: 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:$Select_Docker_image_to_Deploy
+ #     - image: 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:$Select_Docker_image_to_Deploy
+      - image: 556838424422.dkr.ecr.us-east-1.amazonaws.com/web-ui-app:latest
         imagePullPolicy: Always
         name: web-ui-app
 
